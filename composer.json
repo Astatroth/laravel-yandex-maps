@@ -1,0 +1,26 @@
+{
+    "name": "astatroth/laravel-yandex-maps",
+    "description": "Drupal Yandex Maps module port for Laravel 5",
+    "require": {
+        "php": ">=5.6",
+        "laravel/framework": "~5.4"
+    },
+    "version": "1.0",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Nikolay Vasilchuk",
+            "email": "web@css3.su"
+        },
+        {
+            "name": "Astatroth",
+            "email": "astatroth@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Astatroth\\LaravelYandexMaps": "src/"
+        }
+    }
+}
