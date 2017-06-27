@@ -1,6 +1,6 @@
 {
     "name": "astatroth/laravel-yandex-maps",
-    "description": "Drupal Yandex Maps module port for Laravel 5",
+    "description": "Drupal \"Yandex.Maps\" module port for Laravel 5",
     "require": {
         "php": ">=5.6",
         "laravel/framework": "~5.4"
