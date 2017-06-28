@@ -98,10 +98,14 @@ class YandexMaps
             'lines' => $map->lines,
             'polygons' => $map->polygons,
             'routes' => $map->routes,
-            'edit' => $edit
+            'edit' => $edit,
+            'locale' => \App::getLocale()
         ];
 
-        return view()->make('yamaps::map')->with(['options' => json_encode($mapOptions)]);
+        return view()->make('yamaps::map')->with([
+            'edit' => $edit,
+            'options' => json_encode($mapOptions)
+        ]);
     }
 
     protected function extractOption($key)
