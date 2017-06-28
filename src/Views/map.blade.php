@@ -1,11 +1,13 @@
-<div id="map"></div>
+<link rel="stylesheet" href="{{ asset('vendor/yandex-maps/css/yamaps.css') }}">
+
+<div id="map" style="width: 400px; height: 400px; display: none;"></div>
 
 @if ($edit)
-<input type="hidden" name="placemarks">
-<input type="hidden" name="lines">
-<input type="hidden" name="polygons">
-<input type="hidden" name="routes">
-<input type="hidden" name="coordinates">
+<input type="hidden" name="yandex-map-placemarks">
+<input type="hidden" name="yandex-map-lines">
+<input type="hidden" name="yandex-map-polygons">
+<input type="hidden" name="yandex-map-routes">
+<input type="hidden" name="yandex-map-coordinates">
 @endif
 
 <!-- TODO убрать jQuery -->

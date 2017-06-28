@@ -1,0 +1,27 @@
+{
+  "locale": {
+    "opacity": "Прозрачность",
+    "strokeWidth": "Stroke width",
+    "veryBold": "Very bold",
+    "bold": "Bold",
+    "normal": "Normal",
+    "slim": "Slim",
+    "verySlim": "Very slim",
+    "delete": "Delete",
+    "save": "Save",
+    "placemarkText": "Placemark text",
+    "color": "Color",
+    "baloonText": "Baloon text",
+    "searchOnMap": "Search on the map",
+    "search": "Search",
+    "notFound": "Not found",
+    "settingPoints": "Setting points",
+    "lineColor": "Line color",
+    "drawingLines": "Drawing lines",
+    "polygonColor": "Polygon color",
+    "drawingPolygons": "Drawing polygons",
+    "errorFound": "Error found",
+    "routeError": "The route is already on the map",
+    "layingRoutes": "Laying routes"
+  }
+}

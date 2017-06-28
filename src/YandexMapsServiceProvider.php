@@ -31,6 +31,6 @@ class YandexMapsServiceProvider extends ServiceProvider
             __DIR__.'/../public/' => public_path('vendor/yandex-maps')
         ], 'yamaps');
 
-        $this->loadViewsFrom(__DIR__.'/Views', 'yamaps');
+        $this->loadViewsFrom(__DIR__.'/Views', 'yandex-maps');
     }
 }

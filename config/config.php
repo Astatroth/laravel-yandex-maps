@@ -17,7 +17,7 @@ return [
         'traffic' => 0,
         'placemarks' => [
             [
-                'coordinates' => [
+                'coords' => [
                     41.324603453913, 69.228509909668
                 ],
                 'params' => [
@@ -28,7 +28,7 @@ return [
                 ]
             ],
             [
-                'coordinates' => [
+                'coords' => [
                     41.353583534722, 69.310564047852
                 ],
                 'params' => [

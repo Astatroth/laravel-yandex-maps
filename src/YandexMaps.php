@@ -68,7 +68,7 @@ class YandexMaps
         }
     }
 
-    public function show($mapId, $edit = false, $zoom = null, $type = null, $controls = 1, $traffic = 0)
+    public function show($mapId, $edit = true, $zoom = null, $type = null, $controls = 1, $traffic = 0)
     {
         $map = is_numeric($mapId) ? Map::find($mapId) : Map::where('title', $mapId)->first();
 
@@ -86,7 +86,7 @@ class YandexMaps
             'init' => array(
                 'center' => $map->coordinates,
                 'zoom' => $zoom ?: $map->zoom,
-                'type' => $map->type,
+                'type' => 'yandex#'.$map->type,
                 'behaviors' => ['scrollZoom', 'dblClickZoom', 'drag'],
             ),
             'display_options' => [
@@ -94,15 +94,40 @@ class YandexMaps
             ],
             'controls' => $controls,
             'traffic' => $traffic,
-            'placemarks' => $map->placemarks,
+            'placemarks' => [
+                [
+                    'coords' => [
+                        41.324603453913, 69.228509909668
+                    ],
+                    'params' => [
+                        'color' => 'blue',
+                        'iconContent' => 'Mark 1',
+                        'baloonContentBody' => '',
+                        'baloonContentHeader' => 'Mark 1'
+                    ]
+                ],
+                [
+                    'coords' => [
+                        41.353583534722, 69.310564047852
+                    ],
+                    'params' => [
+                        'color' => 'blue',
+                        'iconContent' => 'Mark 2',
+                        'baloonContentBody' => '',
+                        'baloonContentHeader' => 'Mark 2'
+                    ]
+                ]
+            ],
             'lines' => $map->lines,
             'polygons' => $map->polygons,
             'routes' => $map->routes,
             'edit' => $edit,
-            'locale' => \App::getLocale()
+            'language' => [
+                'url' => '/vendor/yandex-maps/js/ru.json'
+            ]
         ];
 
-        return view()->make('yamaps::map')->with([
+        return view()->make('yandex-maps::map')->with([
             'edit' => $edit,
             'options' => json_encode($mapOptions)
         ]);

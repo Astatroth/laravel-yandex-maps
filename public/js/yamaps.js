@@ -4,11 +4,57 @@ Drupal.t = function(string) {
     return string;
 };
 
-var YandexMap = function (options) {
+var YandexMap = function (settings) {
+    var instance = this;
+
+    var options = $.extend({
+        language: {
+            url: null,
+            opacity: "Opacity",
+            strokeWidth: "Stroke width",
+            veryBold: "Very bold",
+            bold: "Bold",
+            normal: "Normal",
+            slim: "Slim",
+            verySlim: "Very slim",
+            delete: "Delete",
+            save: "Save",
+            placemarkText: "Placemark text",
+            color: "Color",
+            baloonText: "Baloon text",
+            searchOnMap: "Search on the map",
+            search: "Search",
+            notFound: "Not found",
+            settingPoints: "Setting points",
+            lineColor: "Line color",
+            drawingLines: "Drawing lines",
+            polygonColor: "Polygon color",
+            drawingPolygons: "Drawing polygons",
+            errorFound: "Error found",
+            routeError: "The route is already on the map",
+            layingRoutes: "Laying routes"
+        }
+    }, settings);
+
     this.maps = {};
     this._mapTools = [];
     this._layouts = {};
-    var instance = this;
+    this.language = {};
+
+    if (options.language.url) {
+        $.ajax({
+            url: options.language.url,
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                instance.language = json;
+            }
+        });
+    } else {
+        this.language = options.language;
+    }
+
+    console.log(this.language);
 
     /**
      * Add map tools.
@@ -1189,5 +1235,6 @@ var YandexMap = function (options) {
         }
         // Enable plugins.
         map.enableTools();
+        console.log('showMap:', this.language);
     };
 };
