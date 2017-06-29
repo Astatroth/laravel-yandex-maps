@@ -7,7 +7,7 @@ Drupal.t = function(string) {
 var YandexMap = function (settings) {
     var instance = this;
 
-    var options = $.extend({
+    var options = $.extend(true, {
         language: {
             url: null,
             opacity: "Opacity",
@@ -39,22 +39,17 @@ var YandexMap = function (settings) {
     this.maps = {};
     this._mapTools = [];
     this._layouts = {};
-    this.language = {};
+    var language = options.language;
 
     if (options.language.url) {
         $.ajax({
-            url: options.language.url,
             dataType: 'json',
+            url: options.language.url,
             success: function (json) {
-                console.log(json);
-                instance.language = json;
+                $.extend(true, language, json);
             }
         });
-    } else {
-        this.language = options.language;
     }
-
-    console.log(this.language);
 
     /**
      * Add map tools.
@@ -1235,6 +1230,5 @@ var YandexMap = function (settings) {
         }
         // Enable plugins.
         map.enableTools();
-        console.log('showMap:', this.language);
     };
 };
