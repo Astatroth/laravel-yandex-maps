@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('vendor/yandex-maps/css/yamaps.css') }}">
 
-<div id="map" style="width: 400px; height: 400px; display: none;"></div>
+<div id="map" style="width: {{ $width }}px; height: {{ $height }}px;"></div>
 
 @if ($edit)
 <input type="hidden" name="yandex-map-placemarks">

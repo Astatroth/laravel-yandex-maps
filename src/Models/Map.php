@@ -15,7 +15,7 @@ class Map extends Model
     ];
 
     protected $fillable = [
-        'title', 'type', 'coordinates', 'placemarks', 'lines', 'polygons', 'routes'
+        'title', 'type', 'zoom', 'coordinates', 'placemarks', 'lines', 'polygons', 'routes'
     ];
 
     protected $primaryKey = 'map_id';
