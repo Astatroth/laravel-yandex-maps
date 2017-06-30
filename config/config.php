@@ -28,7 +28,7 @@ return [
             ],
             'zoom' => 12,
             'type' => 'map',
-            'behaviors' => array('scrollZoom', 'dblClickZoom', 'drag'),
+            'behaviors' => ['scrollZoom', 'dblClickZoom', 'drag'],
             'display-type' => 'map',
             'controls' => 1,
             'traffic' => 0,
@@ -59,7 +59,6 @@ return [
             'lines' => '',
             'polygons' => '',
             'routes' => '',
-            'edit' => true,
         ]
     ]
 ];

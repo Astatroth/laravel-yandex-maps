@@ -137,6 +137,13 @@ class YandexMaps
         return $this;
     }
 
+    public function zoom($zoom)
+    {
+        $this->zoom = $zoom;
+
+        return $this;
+    }
+
     /**
      * Renders the map.
      *
@@ -159,12 +166,12 @@ class YandexMaps
     )
     {
         $mapOptions = [
-            'init' => array(
+            'init' => [
                 'center' => $this->map->coordinates,
                 'zoom' => $this->zoom ?: $this->map->zoom,
                 'type' => 'yandex#'.$this->map->type,
                 'behaviors' => ['scrollZoom', 'dblClickZoom', 'drag'],
-            ),
+            ],
             'display_options' => [
                 'display_type' => $type ?: $this->map->type,
             ],
@@ -199,7 +206,7 @@ class YandexMaps
             'routes' => $this->map->routes,
             'edit' => $edit,
             'language' => [
-                'url' => '/vendor/yandex-maps/js/'.$this->language.'.json'
+                'url' => $this->language ? '/vendor/yandex-maps/js/'.$this->language.'.json' : null
             ]
         ];
 
