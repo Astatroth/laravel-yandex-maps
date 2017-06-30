@@ -1,9 +1,3 @@
-var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'locale': {} };
-
-Drupal.t = function(string) {
-    return string;
-};
-
 var YandexMap = function (settings) {
     var instance = this;
 
@@ -44,6 +38,7 @@ var YandexMap = function (settings) {
     if (options.language.url) {
         $.ajax({
             dataType: 'json',
+            async: false,
             url: options.language.url,
             success: function (json) {
                 $.extend(true, language, json);
@@ -127,7 +122,7 @@ var YandexMap = function (settings) {
 
     // Opacity select layout.
     this.addLayout('yamaps#OpacityLayout', ymaps.templateLayoutFactory.createClass([
-        '<label for="opacity">' + Drupal.t('Opacity') + '</label>',
+        '<label for="opacity">' + language.opacity + '</label>',
         '<select id="opacity">',
         '<option value="1">100%</option>',
         '<option value="0.9">90%</option>',
@@ -144,13 +139,13 @@ var YandexMap = function (settings) {
 
     // Stroke width layout.
     this.addLayout('yamaps#StrokeWidthLayout', ymaps.templateLayoutFactory.createClass([
-        '<label for="strokeWidth">' + Drupal.t('Stroke width') + '</label>',
+        '<label for="strokeWidth">' + language.strokeWidth + '</label>',
         '<select id="strokeWidth">',
-        '<option value="7">' + Drupal.t('Very bold') + '</option>',
-        '<option value="5">' + Drupal.t('Bold') + '</option>',
-        '<option value="3">' + Drupal.t('Normal') + '</option>',
-        '<option value="2">' + Drupal.t('Slim') + '</option>',
-        '<option value="1">' + Drupal.t('Very slim') + '</option>',
+        '<option value="7">' + language.veryBold + '</option>',
+        '<option value="5">' + language.bold + '</option>',
+        '<option value="3">' + language.normal + '</option>',
+        '<option value="2">' + language.slim + '</option>',
+        '<option value="1">' + language.verySlim + '</option>',
         '</select>'
     ].join('')));
 
@@ -181,9 +176,9 @@ var YandexMap = function (settings) {
     // Ballon actions layout.
     this.addLayout('yamaps#ActionsButtons', ymaps.templateLayoutFactory.createClass(
         '<div class="actions"><a id="deleteButton" href="#">' +
-        Drupal.t('Delete') +
+        language.delete +
         '</a><input id="saveButton" type="button" value="' +
-        Drupal.t('Save') +
+        language.save +
         '"/></div>'
     ));
 
@@ -467,15 +462,15 @@ var YandexMap = function (settings) {
             [
                 '<div class="yamaps-balloon yamaps-placemark-edit">',
                 '<div class="form-element">',
-                '<label for="iconContent">' + Drupal.t('Placemark text') + '</label>',
+                '<label for="iconContent">' + language.placemarkText + '</label>',
                 '<input type="text" id="iconContent" value="$[properties.iconContent]"/>',
                 '</div>',
                 '<div class="form-element placemark-colors">',
-                '<label>' + Drupal.t('Color') + '</label>',
+                '<label>' + language.color + '</label>',
                 '$[[yamaps#ColorPicker]]',
                 '</div>',
                 '<div class="form-element">',
-                '<label for="balloonContent">' + Drupal.t('Balloon text') + '</label>',
+                '<label for="balloonContent">' + language.baloonText + '</label>',
                 '<input type="text" id="balloonContent" value="$[properties.balloonContentBody]"/>',
                 '</div>',
                 '$[[yamaps#ActionsButtons]]',
@@ -564,12 +559,13 @@ var YandexMap = function (settings) {
         if (!Map.options.edit) {
             return;
         }
+        console.log(language.search);
 
         // If map in edit mode add search form.
         var $searchForm = $([
             '<form class="yamaps-search-form">',
-            '<input type="text" class="form-text" placeholder="' + Drupal.t('Search on the map') + '" value=""/>',
-            '<input type="submit" class="form-submit" value="' + Drupal.t('Search') + '"/>',
+            '<input type="text" class="form-text" placeholder="' + language.searchOnMap + '" value=""/>',
+            '<input type="submit" class="form-submit" value="' + language.search + '"/>',
             '</form>'].join(''));
 
         $searchForm.bind('submit', function (e) {
@@ -578,7 +574,7 @@ var YandexMap = function (settings) {
             ymaps.geocode(searchQuery, {results: 1}, {results: 100}).then(function (res) {
                 var geoObject = res.geoObjects.get(0);
                 if (!geoObject) {
-                    alert(Drupal.t('Not found'));
+                    alert(language.notFound);
                     return;
                 }
                 var coordinates = geoObject.geometry.getCoordinates();
@@ -616,7 +612,7 @@ var YandexMap = function (settings) {
         var pointButton = new ymaps.control.Button({
             data: {
                 content: '<ymaps class="ymaps-b-form-button__text"><ymaps class="ymaps-b-ico ymaps-b-ico_type_point"></ymaps></ymaps>',
-                title: Drupal.t('Setting points')
+                title: language.settingPoints
             }
         });
 
@@ -662,7 +658,7 @@ var YandexMap = function (settings) {
             [
                 '<div class="yamaps-balloon yamaps-line-edit">',
                 '<div class="form-element line-colors">',
-                '<label>' + Drupal.t('Line color') + '</label>',
+                '<label>' + language.lineColor + '</label>',
                 '$[[yamaps#ColorPicker]]',
                 '</div>',
                 '<div class="form-element line-width">',
@@ -672,7 +668,7 @@ var YandexMap = function (settings) {
                 '$[[yamaps#OpacityLayout]]',
                 '</div>',
                 '<div class="form-element">',
-                '<label for="balloonContent">' + Drupal.t('Balloon text') + '</label>',
+                '<label for="balloonContent">' + language.baloonText + '</label>',
                 '<input type="text" id="balloonContent" value="$[properties.balloonContent]"/>',
                 '</div>',
                 '$[[yamaps#ActionsButtons]]',
@@ -793,7 +789,7 @@ var YandexMap = function (settings) {
         var lineButton = new ymaps.control.Button({
             data: {
                 content: '<ymaps class="ymaps-b-form-button__text"><ymaps class="ymaps-b-ico ymaps-b-ico_type_line"></ymaps></ymaps>',
-                title: Drupal.t('Drawing lines')
+                title: language.drawingLines
             }
         });
 
@@ -839,11 +835,11 @@ var YandexMap = function (settings) {
             [
                 '<div class="yamaps-balloon yamaps-polygon-edit">',
                 '<div class="form-element line-colors">',
-                '<label>' + Drupal.t('Line color') + '</label>',
+                '<label>' + language.lineColor + '</label>',
                 '$[[yamaps#ColorPicker]]',
                 '</div>',
                 '<div class="form-element poly-colors">',
-                '<label>' + Drupal.t('Polygon color') + '</label>',
+                '<label>' + language.polygonColor + '</label>',
                 '$[[yamaps#ColorPicker]]',
                 '</div>',
                 '<div class="form-element line-width">',
@@ -853,7 +849,7 @@ var YandexMap = function (settings) {
                 '$[[yamaps#OpacityLayout]]',
                 '</div>',
                 '<div class="form-element">',
-                '<label for="balloonContent">' + Drupal.t('Balloon text') + '</label>',
+                '<label for="balloonContent">' + language.baloonText + '</label>',
                 '<input type="text" id="balloonContent" value="$[properties.balloonContent]"/>',
                 '</div>',
                 '$[[yamaps#ActionsButtons]]',
@@ -987,7 +983,7 @@ var YandexMap = function (settings) {
         var polygonButton = new ymaps.control.Button({
             data: {
                 content: '<ymaps class="ymaps-b-form-button__text"><ymaps class="ymaps-b-ico ymaps-b-ico_type_poly"></ymaps></ymaps>',
-                title: Drupal.t('Drawing polygons')
+                title: language.drawingPolygons
             }
         });
 
@@ -1067,7 +1063,7 @@ var YandexMap = function (settings) {
                     if (!route) {
                         firstPoint = secondPoint = null;
                     }
-                    alert(Drupal.t('Error found') + ": " + error.message);
+                    alert(language.errorFound + ": " + error.message);
                 }
             );
         };
@@ -1103,7 +1099,7 @@ var YandexMap = function (settings) {
             }
             else {
                 // Third click - alert.
-                alert(Drupal.t('The route is already on this map'));
+                alert(language.routeError);
             }
         };
 
@@ -1111,7 +1107,7 @@ var YandexMap = function (settings) {
         var routeButton = new ymaps.control.Button({
             data: {
                 content: '<ymaps class="ymaps-b-form-button__text"><ymaps class="ymaps-b-ico ymaps-b-ico_type_route"></ymaps></ymaps>',
-                title: Drupal.t('Laying routes')
+                title: language.layingRoutes
             }
         });
 
