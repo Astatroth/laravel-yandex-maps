@@ -5,7 +5,7 @@
         "php": ">=5.6",
         "laravel/framework": "~5.4"
     },
-    "version": "1.0",
+    "version": "1.0.2",
     "license": "GNU",
     "authors": [
         {
@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Astatroth\\LaravelYandexMaps": "src/"
+            "Astatroth\\LaravelYandexMaps\\": "src/"
         }
     }
 }
