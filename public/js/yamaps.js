@@ -580,7 +580,7 @@ var YandexMap = function (settings) {
                 var coordinates = geoObject.geometry.getCoordinates();
                 var params = geoObject.properties.getAll();
                 // Create new placemark.
-                var Placemark = new this.YamapsPlacemark(coordinates, {
+                var Placemark = new instance.YamapsPlacemark(coordinates, {
                     iconContent: params.name,
                     balloonHeaderContent: params.name,
                     balloonContentBody: params.description,

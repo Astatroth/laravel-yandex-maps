@@ -6,8 +6,18 @@ use Illuminate\Support\ServiceProvider;
 
 class YandexMapsServiceProvider extends ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
     protected $defer = false;
 
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->app->singleton(YandexMaps::class, function () {
@@ -17,6 +27,11 @@ class YandexMapsServiceProvider extends ServiceProvider
         $this->app->alias(YandexMaps::class, 'yandex-maps');
     }
 
+    /**
+     * Bootstrap the application events.
+     *
+     * @return void
+     */
     public function boot()
     {
         $this->publishes([
