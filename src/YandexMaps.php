@@ -151,8 +151,8 @@ class YandexMaps
      */
     public function render(
         $edit = false,
-        $width = 400,
-        $height = 400,
+        $width = '400px',
+        $height = '400px',
         $type = null,
         $controls = 1,
         $traffic = 0
