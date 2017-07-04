@@ -7,10 +7,7 @@ use Config;
 
 class YandexMaps
 {
-    /**
-     * @var array
-     */
-    protected $options;
+    protected $options = [];
 
     /**
      * @var \Astatroth\LaravelYandexMaps\Models\Map
@@ -41,19 +38,15 @@ class YandexMaps
 
         $map->title = $title ?: null;
 
-        if (empty($options)) {
-            $options = Config::get('yamaps.maps.default');
-        }
+        $this->parseOptions($options);
 
-        $this->options = $options;
-
-        $map->type = $this->extractOption('display-type');
-        $map->coordinates = $this->extractOption('coordinates');
-        $map->zoom = $this->extractOption('zoom');
-        $map->placemarks = $this->extractOption('placemarks');
-        $map->lines = $this->extractOption('lines');
-        $map->polygons = $this->extractOption('polygons');
-        $map->routes = $this->extractOption('routes');
+        $map->type = 'map'; //$this->extractOption('display-type');
+        $map->coordinates = $this->options['yandex-map-coords']->center;
+        $map->zoom = $this->options['yandex-map-coords']->zoom;
+        $map->placemarks = $this->options['yandex-map-placemarks'];
+        $map->lines = $this->options['yandex-map-lines'];
+        $map->polygons = $this->options['yandex-map-polygons'];
+        $map->routes = $this->options['yandex-map-routes'];
 
         $map->save();
 
@@ -158,8 +151,8 @@ class YandexMaps
      */
     public function render(
         $edit = false,
-        $width = '400px',
-        $height = '400px',
+        $width = '100px',
+        $height = '100px',
         $type = null,
         $controls = 1,
         $traffic = 0
@@ -214,7 +207,11 @@ class YandexMaps
             'edit' => $edit,
             'options' => json_encode($mapOptions),
             'width' => $width,
-            'height' => $height
+            'height' => $height,
+            'coords' => json_encode([
+                'center' => $mapOptions['init']['center'],
+                'zoom' => $mapOptions['init']['zoom']
+            ])
         ]);
     }
 
@@ -241,23 +238,12 @@ class YandexMaps
         throw new YandexMapsException();
     }
 
-    /**
-     * Extracts an option from the options array.
-     *
-     * @param string     $key
-     *
-     * @return string|array|null
-     */
-    protected function extractOption($key)
+    protected function parseOptions($options)
     {
-        if (!is_array($this->options) || empty($this->options)) {
-            return null;
-        }
+        foreach ($options as $key => &$value) {
+            $this->options[$key] = !is_null($value) ? json_decode($value) : null;
 
-        if (!isset($this->options[$key])) {
-            return null;
+            unset($value);
         }
-
-        return $this->options[$key] ?: null;
     }
 }

@@ -94,6 +94,28 @@ Render your new map:
 
 ###### Via the package interface
 
+Set up a form:
+
+```php
+<form action="..." method="...">
+    {!! Maps::get('default')->render(true) !!}
+
+    <button type="submit">Save</button>
+</form>
+
+```
+> Note: specify the `edit` parameter to make a map editable.
+
+Then in your controller you can process following fields:
+
+- yandex-map-placemarks - array of existing and/or new placemarks.
+- yandex-map-lines - array of lines.
+- yandex-map-polygons - array of polygons.
+- yandex-map-routes - array of routes.
+- yandex-map-coords - the center of the map.
+
+To save the mao just call `Maps::create('My new map', $options)`, where `$options` is the form array.
+
 ##### Editing maps
 
 ##### Deleting maps

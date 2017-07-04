@@ -639,8 +639,6 @@ var YandexMap = function (settings) {
     // Class for lines collection.
     this.YamapsLineCollection = function(options) {
         this._init(options);
-        // Selector "storagePrefix + MAP_ID" will be used
-        // for export collection data.
         this.storagePrefix = 'yandex-map-lines';
 
         // Create line and add to collection.
@@ -816,8 +814,6 @@ var YandexMap = function (settings) {
     // Class for polygons collection.
     this.YamapsPolygonCollection = function(options) {
         this._init(options);
-        // Selector "storagePrefix + MAP_ID" will be used
-        // for export collection data.
         this.storagePrefix = 'yandex-map-polygons';
 
         // Create polygon and add to collection.
