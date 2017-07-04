@@ -522,7 +522,6 @@ var YandexMap = function (settings) {
                 onSaveClick: function(e) {
                     // Save click.
                     var placemark = e.data.properties.Placemark;
-                    console.log(placemark);
                     // Save content, color and close balloon.
                     placemark.setContent(e.data.$iconContent.val(), e.data.$balloonContent.val());
                     placemark.setColor(e.data.properties.color);
@@ -559,7 +558,6 @@ var YandexMap = function (settings) {
         if (!Map.options.edit) {
             return;
         }
-        console.log(language.search);
 
         // If map in edit mode add search form.
         var $searchForm = $([
