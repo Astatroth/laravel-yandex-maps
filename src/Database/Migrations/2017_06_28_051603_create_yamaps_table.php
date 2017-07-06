@@ -18,7 +18,6 @@ class CreateYamapsTable extends Migration
             $table->string('title')->nullable();
             $table->string('type')->default('yandex#map');
             $table->text('coordinates')->nullable();
-            $table->integer('zoom')->unsigned()->default(10);
             $table->text('placemarks')->nullable();
             $table->text('lines')->nullable();
             $table->text('polygons')->nullable();

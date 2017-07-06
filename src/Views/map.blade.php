@@ -3,10 +3,10 @@
 <div id="map" style="width: {{ $width }}; height: {{ $height }};"></div>
 
 @if ($edit)
-<input type="hidden" name="yandex-map-placemarks">
-<input type="hidden" name="yandex-map-lines">
-<input type="hidden" name="yandex-map-polygons">
-<input type="hidden" name="yandex-map-routes">
+<input type="hidden" name="yandex-map-placemarks" value="{{ $placemarks }}">
+<input type="hidden" name="yandex-map-lines" value="{{ $lines }}">
+<input type="hidden" name="yandex-map-polygons" value="{{ $polygons }}">
+<input type="hidden" name="yandex-map-routes" value="{{ $routes }}">
 <input type="hidden" name="yandex-map-coords" value="{{ $coords }}">
 @endif
 

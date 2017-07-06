@@ -32,89 +32,9 @@ And that's it! Your're ready to go.
 
 #### Rendering a map
 
-By default the package goes with one default map. To render it add following code to your view:
-```php
-{!! Maps::get('default')->render() !!}
-```
-
-The `get()` method accepts the map title or the map ID.
-The `render()` methods accepts following arguments:
-
-- `bool $edit` - indicates if the map is being rendering for editing. Default `false`.
-- `string $width` - width of the map container. Default '400px'.
-- `string $height` - height of the map container. Default '400px'.
-- `string $type` - ** not used at this time **. Default `null`.
-- `bool|integer $controls` - indicates if the map controls should be displayed. Default `1`.
-- `bool|integer $traffic` - indicates if the traffic information should be displayed on the map. Default `0`.
-
-All arguments are optional.
-
-Additionally you may want to set the map zoom and/or language:
-
-```php
-{!! Maps::get('default')->zoom(10)->language('en')->render() !!}
-```
-> **Note:** The default language is Russian.
-
 #### Managing your maps
 
 ##### Adding new maps
-
-###### Via `yamaps.php` configuration file
-
-To add a new map just add it to the configuration, below the default map:
-
-```php
-'new_map' => [
-            'title' => 'New map',
-            'coordinates' => [
-                ..., ...
-            ],
-            'zoom' => 12,
-            'type' => 'map',
-            'behaviors' => ['scrollZoom', 'dblClickZoom', 'drag'],
-            'display-type' => 'map',
-            'controls' => 1,
-            'traffic' => 0,
-            'placemarks' => [
-                [...],
-                [...]
-            ],
-            'lines' => '',
-            'polygons' => '',
-            'routes' => '',
-        ]
-```
-
-Render your new map:
-
-```php
-{!! Maps::get('new_map')->render() !!}
-```
-
-###### Via the package interface
-
-Set up a form:
-
-```php
-<form action="..." method="...">
-    {!! Maps::get('default')->render(true) !!}
-
-    <button type="submit">Save</button>
-</form>
-
-```
-> Note: specify the `edit` parameter to make a map editable.
-
-Then in your controller you can process following fields:
-
-- yandex-map-placemarks - array of existing and/or new placemarks.
-- yandex-map-lines - array of lines.
-- yandex-map-polygons - array of polygons.
-- yandex-map-routes - array of routes.
-- yandex-map-coords - the center of the map.
-
-To save the mao just call `Maps::create('My new map', $options)`, where `$options` is the form array.
 
 ##### Editing maps
 
