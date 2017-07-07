@@ -7,7 +7,7 @@
 <input type="hidden" name="yandex-map-lines" value="{{ $lines }}">
 <input type="hidden" name="yandex-map-polygons" value="{{ $polygons }}">
 <input type="hidden" name="yandex-map-routes" value="{{ $routes }}">
-<input type="hidden" name="yandex-map-coords" value="{{ $coords }}">
+<input type="hidden" name="yandex-map-coords">
 @endif
 
 <script src="{{ Config::get('yamaps.api-url') }}?lang={{ Config::get('yamaps.api-language') }}&load=package.full"></script>
